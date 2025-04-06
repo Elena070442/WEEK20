@@ -1,0 +1,36 @@
+#button{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(91, 224, 113);
+}
+#entity{
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    
+}
+#num{
+    width: 200px;
+    height: 45px; 
+    font-size: 15px;
+}
+#loader {
+    display: none;
+}
+.error {
+    color: red;
+}
+.result {
+    width: 500px;
+    color: rgb(56, 8, 119);
+    margin: 10px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+main{
+    text-align: center;
+    width: 700px;
+}

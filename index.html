@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Создайте функцию makeOne, которая пытается вызвать функцию functionWithErrors, и при этом отлавливает ошибку с помощью блока try/catch.
+    <script>
+        function makeOne() {
+	const resultOne = document.getElementById('practicum')
+	try{
+	functionWithErrors() 
+	resultOne.textContent = 'Функция вызвана без ошибок'
+    }catch(error){
+	resultOne.textContent = 'Ошибка была перехвачена: ' + error.message
+}
+}
+makeOne()
+    </script>
+    <script>
+function makeTwo() {
+  const resultTwo = document.getElementById('practicum')
+  const e = 'Меня нельзя перезаписать'
+  try{
+    e='Я новое значение'
+  }catch(error){
+    resultTwo.innerHTML = `Не удалось перезаписать константу: ${error.message}`
+  }
+}
+makeTwo()
+    </script>
+    <p>3Cоздайте функцию makeThree, которая используя блок try/catch,
+        - пытается выполнить код с оператором throw new Error (передай в качестве аргумента строку 'Ошибка!'),
+        - обрабатывает ошибку и выводит её в <p>, если происходит попытка выполнить этот оператор. </p>
+<script>
+    function makeThree() {
+	const resultThree = document.getElementById('practicum')
+	try {
+	throw new Error('Ошибка!')
+	} catch (error) {
+resultThree.textContent = 'Ошибка была перехвачена: ' + error.message
+	}
+}
+makeThree()
+</script>
+<script>
+// Здесь вставьте код функции makeFour
+function makeFour() {
+const resultElement = document.getElementById('practicum');
+try {
+// Пытаемся выполнить умножение
+const result = 2 * 3; // Умножаем 2 на 3
+resultElement.textContent =  + result; // Выводим результат в элемент
+} catch (error) {
+// Ошибка не выводится на экран
+// Здесь можно оставить пустым или обработать ошибку, если это необходимо
+}
+}
+makeFour();
+</script>
+
+<p>5
+Допишите функцю makeFive так, чтобы она создала объект ошибки (new Error) и выводила текст ошибки в консоль.
+Важно! Вызываем функции всегда по одной, вторую комментируем.
+function makeFive(number) {
+  // если number равна 0, генерируем ошибку и выводим сообщение ошибки в консоль
+  // иначе выводим в консоль результат выражения number * (number - 1)
+}
+makeFive(0)
+//makeFive(-1)
+</p>
+<script>
+    function makeFive(number) {
+    try {
+        // Если number равна 0, генерируем ошибку
+        if (number === 0) {
+            throw new Error('Ошибка: число не должно быть равно 0.');
+        } else {
+            // Иначе выводим результат выражения
+            console.log(number * (number - 1));
+        }
+    } catch (error) {
+        // Выводим сообщение ошибки в консоль
+        console.error(error.message);
+    }
+}
+
+// Вызов функции с number равным 0
+makeFive(0);
+// Вызов функции с number равным -1 (закомментирован)
+makeFive(-1);
+</script>
+<P>6
+    Создайте функцию makeSix, которая дополнит код предыдущей функции так, чтобы она использовала оператор throw для генерации исключения в случае ошибки, а затем перехватывала это исключение и выводила в консоль сообщение "Ошибка перехвачена".
+</P>
+<script>
+function makeSix(number) {
+	try {
+	throw new Error('Ошибка')
+	} catch (error) {
+	console.log('Ошибка перехвачена')
+	}
+}
+makeSix(0)
+</script>
+<p>
+Допишите функцию makeSeven так, что если делитель равен нулю, бросьте исключение с сообщением "Деление на ноль недопустимо".
+</p>
+<script>
+function makeSeven() {
+	let dividend = 10
+	let divisor = 0
+	try{
+    throw  new Error('Ошибка')
+    }catch{
+    console.log(dividend / divisor)
+    console.log('Деление на ноль недопустимо')
+    }
+}
+makeSeven()
+</script>
+<P>
+Добавьте блок try/catch так, чтобы вместо ошибки выводилось цифра 1 в консоль
+</P>
+<script>
+    function makeEight() {
+	try{
+	let a = 22;
+	let c = a + d;
+    }catch(error){
+    console.log('1')
+    }
+	//Вывод цифры в консоль
+}
+makeEight()
+</script>
+<p>
+    Добавьте в функцию makeNine блок try, в котором адрес будет проверяться на валидность и пробрасываться ошибка, если адрес некорректен
+    Если проверка пройдена успешно, выведите сообщение "Email-адрес корректен" на страницу в 
+    Если возникла ошибка (некорректный email), перехватите исключение с помощью блока catch
+    В блоке catch выведите сообщение об ошибке 'Некорректный email-адрес' на страницу в
+    function makeNine() {
+        let email = 'example.com'
+        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+        //твой код
+    }
+    makeNine()
+</p>
+<script>
+    function makeNine() {
+    let email = 'example.com';
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    try {
+        // Проверяем валидность email
+        if (!emailPattern.test(email)) {
+            throw new Error('Некорректный email-адрес');
+        }
+        // Если проверка пройдена успешно
+        document.body.innerHTML += "<p>Email-адрес корректен</p>";
+    } catch (error) {
+        // Обработка ошибки
+        document.body.innerHTML += "<p>" + error.message + "</p>";
+    }
+}
+
+makeNine();
+function makeNine() {
+  let email = 'example.com'
+  let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+  
+try {
+    if(!emailPattern.test(email)) {
+    throw 'Некорректный email-адрес'
+    }
+    document.getElementById('practicum').textContent = 'Email-адрес корректен';
+} catch (error) {
+document.getElementById('practicum').textContent = error
+}
+}
+makeNine()
+</script>
+<script>10
+    function makeTen() {
+    const phoneNumber = '066298207'; // Пример телефонного номера
+    
+    try {
+        // Проверяем, что номер состоит только из цифр
+        if (!/^\d+$/.test(phoneNumber)) {
+            throw new Error('Телефонный номер должен состоять только из цифр');
+        }
+        
+        // Проверяем длину телефонного номера
+        if (phoneNumber.length < 10) {
+            throw new Error('Некорректная длина телефонного номера');
+        }
+        
+        // Если проверка пройдена успешно
+        console.log('Телефонный номер корректен');
+    } catch (error) {
+        // Обработка ошибки
+        console.error(error.message);
+    }
+}
+makeTen();
+</script>
+<p>
+    Создайте функцию makeEleven, которая проверит возраст пользователя.
+Если возраст меньше 18 лет, необходимо бросить в консоль исключение типа Error с сообщением "Доступ запрещен для лиц младше 18 лет". В противном случае, выведите в консоль сообщение "Доступ разрешен".
+</p>
+<script>
+    function makeEleven() {
+	let age = 12
+  try{
+	if (age < 18) {
+		throw new Error('Доступ запрещен для лиц младше 18 лет')
+	} else {
+		age>18
+	}
+  console.log('Доступ разрешен')
+  }catch(error){
+    console.error(error.message)
+  }
+}
+makeEleven()
+</script>
+<p>
+    Создайте функцию makeTwelve, которая будет подсчитывать размер скидки на товар
+Однако существует ограничение: скидка не может быть отрицательной и не может превышать 50%
+В случае нарушения этого ограничения, необходимо в <p> бросить исключение типа Error с сообщением "Некорректное значение скидки"
+В противном случае, выведите в <p> сообщение с размером скидки.
+Используйте блок try/catch
+</p>
+<script>
+    function makeTwelve() {
+  let discount = 51
+  try {
+    if (discount < 0 || discount > 50) {
+    throw new Error('Некорректное значение скидки')
+	}
+    document.getElementById('practicum').textContent = discount
+	console.log(discount)
+  } catch (error) {
+    document.getElementById('practicum').textContent =error.message
+}
+}
+makeTwelve()
+</script>
+<p>
+    Есть функция makeThirteen, в неё передаются два параметра: переменная ("а") и некоторая функция ("func"). Вам необходимо запустить функцию "func", с переменной "а" в качестве аргумента
+В блоке catch вывести имя (свойство "name") с возникающей ошибки в элемент с id practicum
+    </p>
+    <script>
+        function makeThirteen(a, func) {
+	const result = document.getElementById('practicum')
+	try {
+		func (a)
+	} catch (error) {
+		result.textContent=error.name
+	}
+}
+makeThirteen()
+</script>
+<script>
+    function makeFourteen(n, func) {
+	const result = document.getElementById('practicum')
+	try{
+    func(n)
+    }catch(error){
+    result.textContent=error.message
+    }
+}
+makeFourteen()
+    </script>
+    <script>15
+        function makeFifteen(str, func) {
+	const result = document.getElementById('practicum')
+  try{
+    func(str)
+  }catch(error){
+    result.textContent=error.message
+  }
+}
+makeFifteen()
+        </script>
+<p>
+    Создайте функцию makeSixteen и добавьте try, catch, finally так, чтобы в элемент с id practicum выводился 0 при ошибке.
+А в элемент с id practicumFinally всегда выводилось слово finally
+function makeSixteen() {
+  const result = document.getElementById('practicum')
+  const forWordFinally = document.getElementById('practicumFinally')
+  //Блок try
+  //Некорректная операция деления для примера, может вызвать ошибку
+  if (true) {
+      throw new Error('Division by zero')
+  }
+  const result = 12 / 0
+  result.textContent = result
+  //Блок catch (error)
+  result.textContent = '0' //Вывод '0' при ошибке
+  //Блок finally
+}
+makeSixteen()
+    </p>
+    <script>
+        function makeSixteen() {
+    const result = document.getElementById('practicum');
+    const forWordFinally = document.getElementById('practicumFinally');
+
+    try {
+        // Блок try
+        // Некорректная операция деления для примера, может вызвать ошибку
+        if (true) {
+            throw new Error('Division by zero');
+        }
+        const calculationResult = 12 / 0; // Это не вызовет ошибку, но результат будет Infinity
+        result.textContent = calculationResult; // Выводим результат
+    } catch (error) {
+        // Блок catch (error)
+        result.textContent = '0'; // Вывод '0' при ошибке
+    } finally {
+        // Блок finally
+        forWordFinally.textContent = 'finally'; // Всегда выводим слово "finally"
+    }
+}
+
+// Вызов функции
+makeSixteen();
+
+function makeSixteen() {
+  const result = document.getElementById('practicum')
+  const forWordFinally = document.getElementById('practicumFinally')
+  try{
+  //Некорректная операция деления для примера, может вызвать ошибку
+  if (true) {
+    throw new Error('Division by zero')
+  }
+  const result = 12 / 0
+  result.textContent = result
+  }catch(error){
+  result.textContent = '0' //Вывод '0' при ошибке
+  }finally{
+  forWordFinally.textContent = 'finally'  
+}
+  }
+makeSixteen()
+        </script>
+<p>
+    Создайте функцию makeSeventeen и добавьте try, catch, finally так, чтобы в элемент с id practicum выводилась сумма элементов массива при успешном выполнении функции и сообщение "Ошибка" при ошибке
+А в элемент с id practicumFinally всегда выводилась строка "finally17"
+function makeSeventeen() {
+	const resultSeventeen = document.getElementById('practicum')
+	//Блок try
+	const arr = [1, 2, 3]
+	const sum = arr.reduce((acc, val) => acc + val, 0)
+	resultSeventeen.textContent = sum
+	//Блок catch (error)
+	//Вывод ошибки в <p> 
+	//Ваш код
+	//Блок finally
+}
+makeSeventeen()
+try: В этом блоке мы пытаемся выполнить код, который может вызвать ошибку. Мы создаем массив arr и используем метод reduce для вычисления суммы его элементов. Если все проходит успешно, сумма будет выведена в элемент с id practicum.
+catch: Если в блоке try возникает ошибка (например, если массив не определен), управление передается в этот блок. Здесь мы устанавливаем текстовое содержимое элемента с id practicum равным 'Ошибка'.
+finally: Этот блок выполняется всегда, независимо от того, произошла ошибка или нет. Здесь мы устанавливаем текстовое содержимое элемента с id practicumFinally равным 'finally17'.
+    </p>
+    <script>
+        function makeSeventeen() {
+    const resultSeventeen = document.getElementById('practicum');
+    const forWordFinally = document.getElementById('practicumFinally');
+
+    try {
+        // Блок try
+        const arr = [1, 2, 3];
+        const sum = arr.reduce((acc, val) => acc + val, 0);
+        resultSeventeen.textContent = sum; // Выводим сумму элементов массива
+    } catch (error) {
+        // Блок catch (error)
+        resultSeventeen.textContent = 'Ошибка'; // Выводим сообщение об ошибке
+    } finally {
+        // Блок finally
+        forWordFinally.textContent = 'finally17'; // Всегда выводим строку "finally17"
+    }
+}
+
+// Вызов функции
+makeSeventeen();
+        </script>
+
+<p>18
+Cоздайте функцию makeEighteen и добавьте try, catch, finally так, чтобы в элемент с id practicum выводилось значение, возвращаемое функцией calculateValue, при успешном выполнении и сообщение "Ошибка" при ошибке
+А в элемент с id practicumFinally всегда выводилась строка "finally18
+</p>
+<script>
+function calculateValue() {
+  if (Math.random() < 0.5) {
+    throw new Error('Произошла ошибка')
+  }
+  return 'Успешное выполнение'
+}
+function makeEighteen() {
+  const paragraph = document.getElementById('practicum')
+  const paragraphFinally = document.getElementById('practicumFinally')
+  try {
+    paragraph.textContent = calculateValue()
+  } catch (error) {
+    paragraph.textContent = error.message
+  } finally {
+    paragraphFinally.textContent = 'finally18'
+  }
+}
+makeEighteen()
+</script>
+<script>
+    function fetchData() {
+if (Math.random() < 0.5) {
+throw new Error('Произошла ошибка при получении данных')
+}
+return 'Данные успешно получены'
+}
+function makeNineteen() {
+  const paragraph = document.getElementById('practicum')
+  const paragraphFinally = document.getElementById('practicumFinally')
+  try {
+    paragraph.textContent = fetchData()
+  } catch (error) {
+    paragraph.textContent = error.message
+  } finally {
+    paragraphFinally.textContent = 'finally19'
+  }
+}
+makeNineteen()
+</script>
+<script>
+    const json = '{ некорректный JSON }';
+
+function makeTwenty() {
+  const resultTwenty = document.getElementById('practicum')
+  try{
+  let user = JSON.parse(json) //Возникает ошибка
+  resultTwenty.textContent = user.name //Не сработает
+  }catch(error){
+  resultTwenty.textContent = 'Извините, в данных ошибка, мы попробуем получить их ещё раз.'
+}
+}
+makeTwenty()
+    </script>
+    <script>
+        const jsonTwentyOne = '{ некорректный JSON }'
+
+function makeTwentyOne() {
+	const resultTwentyOne = document.getElementById('practicum')
+  try{
+	let user=JSON.parse(json)
+    resultTwentyOne.textContent=user.name
+  }catch(error){
+    resultTwentyOne.textContent='Извините, в данных ошибка, мы попробуем получить их ещё раз.'
+  }
+}
+makeTwentyOne()
+</script>
+<p>
+Создайте функцию makeTwentyTwo, которая пытается выполнить некорректную операцию и использует оператор throw и выводит 'Ошибка',
+ошибка обрабатывается в блоке catch
+unction makeTwentyTwo() {
+  const resultTwentyTwo = document.getElementById('practicum')
+  //Блок try
+  const divisor = 0
+  if (divisor === 0) {
+    //Ваш код
+  }
+  const result = 24 / divisor
+  //Блок catch (error)
+}
+makeTwentyTwo()
+    </p>
+<script>
+        function makeTwentyTwo() {
+    const resultTwentyTwo = document.getElementById('practicum');
+
+    try {
+        // Блок try
+        const divisor = 0;
+        if (divisor === 0) {
+            throw new Error('Деление на ноль'); // Генерируем ошибку
+        }
+        const result = 24 / divisor; // Эта строка не будет выполнена, если выше выброшена ошибка
+        resultTwentyTwo.textContent = result; // Выводим результат
+    } catch (error) {
+        // Блок catch (error)
+        resultTwentyTwo.textContent = 'Ошибка'; // Выводим сообщение об ошибке
+    }
+}
+
+// Вызов функции
+makeTwentyTwo();
+</script>
+<p>
+    Создайте функцию makeTwentyThree, которая с вероятностью 90% выбрасывает ошибку,
+и обрабатывает эту ошибку в блоке catch (нужно вывести сообщение об ошибке error.message).  
+    </p>
+    <script>
+        function makeTwentyThree() {
+	const result = document.getElementById('practicum')
+	try{
+	const randomValue = Math.random()
+	if (randomValue <= 0.9) {
+		throw new Error('Искусственная ошибка')
+	}
+	result.textContent = 'Операция успешно выполнена'
+    }catch(error){
+    result.textContent=error.message
+    }
+}
+makeTwentyThree()
+        </script>
+<p>
+Создайте функцию makeTwentyFour, которая использует setTimeout с блоком try/catch,
+чтобы обработать ошибку, которая может возникнуть при асинхронном выполнении кода.
+function makeTwentyFour() {
+  const result = document.getElementById('practicum')
+  //Блок try
+  noSuchVariable //Попытка обратиться к несуществующей переменной
+  //Блок catch (error)
+}
+makeTwentyFour()
+</p>
+<script>
+function makeTwentyFour() {
+  const result = document.getElementById('practicum');
+
+  setTimeout(() => {
+    try {
+      // Попытка обратиться к несуществующей переменной
+      noSuchVariable; 
+    } catch (error) {
+      // Обработка ошибки
+      console.error('Произошла ошибка:', error);
+      result.textContent = 'Произошла ошибка: ' + error.message;
+    }
+  }, 1000); // Задержка в 1 секунду
+}
+makeTwentyFour();
+function makeTwentyFour() {
+  const result = document.getElementById('practicum')
+  try {
+      noSuchVariable
+  } catch (error) {
+    result.textContent = error.message
+  }
+}
+makeTwentyFour()
+</script>
+<p>25
+  Создайте функцию makeTwentyFive, которая использует async/await для асинхронной операции и блок try/catch, чтобы обработать ошибку, которая может возникнуть при этой асинхронной операции.
+</p>
+<script>
+const result = document.getElementById('practicum')
+function simulateAsyncOperation() {
+	return new Promise((resolve, reject) => {
+	if (Math.random() < 0.9) {
+	reject(new Error('Произошла ошибка при асинхронной операции'));
+	} else {
+	resolve('Асинхронная операция успешно выполнена');
+		}
+	});
+}
+async function myFn() {
+  result.textContent = 'Ожидание...';
+  try {
+  const result = await simulateAsyncOperation();
+  result.textContent = 'Результат: ' + result;
+  } catch (error) {
+  result.textContent = 'Произошла ошибка: ' + error.message;
+  }
+}
+myFn()
+</script>
+
+<p>26
+  Создайте функцию makeTwentySix, которая содержит код с использованием Promise.reject, демонстрирующий, что ошибки внутри этих операций не попадают в блок catch на том же уровне.
+  function makeTwentySix() {
+    const result = document.getElementById('practicum')
+    result.textContent = 'Ожидание...'
+    try {
+      //твой код
+      throw new Error('ошибка')
+    } catch (e) {
+      result.textContent = 'Ошибка на верхнем уровне: ' + e.message
+    }
+  }
+  makeTwentySix()
+</p>
+<script>
+function makeTwentySix() {
+    const result = document.getElementById('practicum');
+    result.textContent = 'Ожидание...';
+
+    try {
+        // Создаем промис, который будет отклонен
+        Promise.reject(new Error('Ошибка внутри промиса'))
+            .then(() => {
+                // Этот блок не выполнится, так как промис отклонен
+                result.textContent = 'Успех!';
+            })
+            .catch((error) => {
+                // Обработка ошибки внутри промиса
+                result.textContent = 'Ошибка внутри промиса: ' + error.message;
+            });
+
+        // Генерируем ошибку на верхнем уровне
+        throw new Error('Ошибка на верхнем уровне');
+    } catch (e) {
+        // Эта ошибка будет поймана здесь
+        result.textContent = 'Ошибка на верхнем уровне: ' + e.message;
+    }
+}
+
+makeTwentySix();
+</script>
+<p>
+  
+</p>
+<script>
+  function makeTwentySeven() {
+	const result = document.getElementById('practicum')
+	result.textContent = string
+	return
+	try {
+		while (true) {
+			// Бесконечный цикл
+		}
+	} catch (error) {
+		result.textContent = 'Произошла ошибка: ' + error.message
+	}
+}
+makeTwentySeven()
+</script>
+</body>
+</html>

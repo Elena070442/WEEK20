@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style/index2.css">
+<title>Swapi API</title>
+</head>
+
+<body>
+<main>
+<div><h1 >Swapi API</h1></div>
+<div><label for="entity">Выберите сущность:</label></div>
+<select id="entity">
+<option value="people">Люди</option>
+<option value="planets">Планеты</option>
+<option value="starships">Корабли</option>
+</select>
+
+<input type="number" id="num" min="1" max="10">
+
+<button id="button">Вперёд!</button>
+
+<div id="loader">Идёт загрузка...</div>
+<div class="result" id="result"></div>
+<div class="error" id="error"></div>
+
+
+<script>
+document.getElementById('button').addEventListener('click', fetchData);
+
+function fetchData() {
+const entity = document.getElementById('entity').value;
+const id = document.getElementById('num').value;
+
+// Сбросим предыдущие сообщения
+document.getElementById('result').textContent = '';
+document.getElementById('error').textContent = '';
+
+// Проверка на валидность ID
+if (id < 1 || id > 10) {
+document.getElementById('error').textContent = 'ID должен быть от 1 до 10';
+return;
+}
+
+const url = `https://swapi.py4e.com/api/${entity}/${id}/`;
+
+// Показать индикатор загрузки
+document.getElementById('loader').style.display = 'block';
+
+fetch(url)
+.then(response => {
+if (!response.ok) {
+return Promise.reject(response.status);
+}
+return response.json();
+})
+.then(data => {
+// Скрыть индикатор загрузки
+document.getElementById('loader').style.display = 'none';
+
+// Выводим результат
+document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+})
+.catch(error => {
+// Скрыть индикатор загрузки
+document.getElementById('loader').style.display = 'none';
+
+// Обработка ошибок
+if (error === 404) {
+document.getElementById('error').textContent = 'Данные не найдены';
+} else if (error === 500) {
+document.getElementById('error').textContent = 'Ошибка сервера';
+} else {
+document.getElementById('error').textContent = 'Сервер не доступен';
+}
+})
+.finally(() => {
+});
+}
+</script>
+</main>
+</body>
+</html>
